@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Solutions - UP.AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-image: url('pixels_upai.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.65);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        nav ul li {
+            position: relative;
+            margin-right: 30px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #00bfff;
+        }
+        header {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        header h1 {
+            font-size: 50px;
+            color: #ffffff;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+        }
+        header p {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        /* Styling the LLM Solutions sections */
+        section {
+            width: 80%;
+            max-width: 1200px;
+            margin: 50px auto;
+            background-color: rgba(80, 90, 90, 0.2); /* Light grey with transparency */
+            padding: 30px;
+            border-radius: 10px;
+        }
+        section h2 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        section p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .image-container img {
+            width: 45%;
+            height: auto;
+            border-radius: 10px;
+        }
+        footer {
+            margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+            color: #ffffff;
+        }
+        .logo h2 {
+            color: #d62d91; /* Dark pink with gradient */
+            background: linear-gradient(45deg, #d62d91, #ff66cc); /* Mild gradient for brightness */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h2>UP.AI</h2>
+        </div>
+        <ul>
+            <li><a href="upai.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>LLM Solutions</h1>
+        <p>Advanced AI services leveraging state-of-the-art language models.</p>
+    </header>
+
+    <!-- LLM Solutions Section -->
+    <section>
+        <h2>RAG Fine-Tuning & Knowledge Graphs</h2>
+        <p>Our Retrieval-Augmented Generation (RAG) fine-tuning enables us to provide custom models that integrate external knowledge databases for enhanced accuracy and contextual responses. Using knowledge graphs, we structure data efficiently for advanced LLM solutions tailored to your needs.</p>
+    </section>
+
+    <section>
+        <h2>Custom Websites & Chatbots Powered by LLM</h2>
+        <p>From building intelligent, responsive websites to creating custom chatbots, our solutions offer seamless integration with cutting-edge LLMs. Whether it's personalized customer interactions or automated content generation, our technology adapts to your requirements.</p>
+        <div class="image-container">
+            <img src="llm_image_1.jpg" alt="LLM Website Solution">
+            <img src="llm_image_2.jpg" alt="Custom Chatbots">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 UP.AI | All Rights Reserved</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UP.AI - AI Solutions for Fashion and Advanced LLMs</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and general styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-image: url('pixels_upai.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.65);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        nav ul li {
+            position: relative;
+            margin-right: 30px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #00bfff; /* Blue color on hover */
+        }
+        nav ul li ul {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        nav ul li ul li {
+            padding: 10px;
+        }
+        header {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        header h1 {
+            font-size: 50px;
+            color: #ffffff; /* White text for the header */
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+        }
+        header p {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #ffffff; /* White text for the subheading */
+        }
+        .btn {
+            padding: 12px 40px;
+            background: linear-gradient(45deg, #6a0dad, #ffffff); /* Purple to white gradient */
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background 0.4s ease, transform 0.2s;
+            margin-top: 20px; /* Adjust margin to move button down slightly */
+        }
+        .btn:hover {
+            background: linear-gradient(45deg, #ffffff, #6a0dad); /* White to purple gradient */
+            transform: scale(1.05);
+        }
+
+        .image-slider {
+            width: 80%;
+            max-width: 600px;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+            height: 400px; /* Set height to make space for captions */
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 1s ease-in-out;
+            height: 100%; /* Ensure the wrapper takes full height */
+        }
+
+        .slide {
+            position: relative;
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center content vertically */
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%; /* Ensures the image fills the container */
+            object-fit: cover; /* Ensure the image covers the container */
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            color: #ff66cc; /* Pink color for captions */
+            font-size: 18px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6); /* Dark background to improve readability */
+            padding: 10px;
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+
+        footer {
+            margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        /* Slider Controls */
+        .slider-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .slider-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .slider-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Flex container for slider and descriptive text */
+        .slider-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            position: relative;
+            flex-direction: column; /* Stack elements vertically */
+        }
+
+        .description {
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .description h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .description p {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .logo h2 {
+            color: #d62d91; /* Dark pink with gradient */
+            background: linear-gradient(45deg, #d62d91, #ff66cc); /* Mild gradient for brightness */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h2>UP.AI</h2>
+        </div>
+        <ul>
+            <li><a href="upai.html">Home</a></li>
+            <li><a>Products</a>
+                <ul>
+                    <li><a href="fashion-solutions.html">Fashion Solutions</a></li>
+                    <li><a href="llm-solutions.html">LLM Solutions</a></li>
+                </ul>
+            </li>
+          
+            </li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1 style="color: #ffb6c1;">Welcome to UP.AI</h1>
+        <p>Innovative AI solutions in Fashion, Virtual Try-On, and Advanced LLMs.</p>
+        <button class="btn"><a href="started.html">Get Started</button></a>
+    </header>
+
+    <div class="slider-container">
+        <div class="image-slider">
+            <div class="slider-wrapper">
+                <div class="slide">
+                    <img src="vton_upai.jpg" alt="Fashion 1">
+                    <div class="caption">Virtual Try on Software</div>
+                </div>
+                <div class="slide">
+                    <img src="makeupfacehair_upai.jpg" alt="Fashion 2">
+                    <div class="caption">Hair styling and facial makeup</div>
+                </div>
+                <div class="slide">
+                    <img src="llm_upai.jpg" alt="Fashion 3">
+                    <div class="caption">GenAI solutions using LLM</div>
+                </div>
+            </div>
+
+            <div class="slider-controls">
+                <button class="prev">&lt;</button>
+                <button class="next">&gt;</button>
+            </div>
+        </div>
+
+        <div class="description">
+            <h2 style="color: #ffb6c1;">About UP.AI</h2>
+            <p>We offer AI based virtual try-ons,facial makeup and hair coloring powered by advanced computer vision technologies.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 UP.AI | All Rights Reserved</p>
+    </footer>
+
+    <script src="slider.js"></script>
+</body>
+</html>
