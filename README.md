@@ -1,4 +1,3 @@
-```markdown
 # UP.AI Company Website
 
 This repository contains the source code for the UP.AI professional website, showcasing AI-driven fashion technology and LLM solutions. The site includes features such as dynamic sliders for images, fashion tech sections with interactive elements, and informative sections about AI solutions and consulting services.
