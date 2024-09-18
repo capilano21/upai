@@ -1,155 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - UP.AI</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* General styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        body {
-            background-image: url('pixels_upai.jpg');
-            background-size: cover;
-            background-position: center;
-            color: #ffffff;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.65);
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-        nav ul li {
-            position: relative;
-            margin-right: 30px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-        nav ul li a:hover {
-            color: #00bfff;
-        }
-        header {
-            text-align: center;
-            padding: 50px 20px;
-        }
-        header h1 {
-            font-size: 50px;
-            color: #ffffff;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-        }
-        header p {
-            font-size: 20px;
-            margin-top: 20px;
-        }
-        section {
-            width: 80%;
-            max-width: 1200px;
-            margin: 50px auto;
-            background-color: rgba(80, 90, 90, 0.05);
-            padding: 20px;
-            border-radius: 10px;
-        }
-        section h2 {
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #ffb6c1;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        label {
-            font-size: 18px;
-            margin-bottom: 5px;
-            color: #ffffff;
-        }
-        input, textarea {
-            width: 100%;
-            max-width: 600px;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            font-size: 16px;
-        }
-        input::placeholder, textarea::placeholder {
-            color: #bbbbbb;
-        }
-        button {
-            background-color: #00bfff;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #ff66cc;
-        }
-        footer {
-            margin-top: 50px;
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 20px;
-            text-align: center;
-            font-size: 16px;
-            color: #ffffff;
-        }
-     
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="logo">
-            <h2 style="color: #d62d91; background: linear-gradient(45deg, #d62d91, #ff66cc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">UP.AI</h2>
-        </div>
-        <ul>
-            <li><a href="upai.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="started.html">Get Started</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <header>
-        <h1 style="color: #ffb6c1;">Contact Us</h1>
-        <p>We’d love to hear from you! Feel free to send us your inquiries or requests for custom AI solutions.</p>
-    </header>
-
-    <section>
-        <h2>Get in Touch</h2>
-        <form id="contactForm">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
-
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
-
-            <button type="submit">Send Message</button>
+="submit">Send Message</button>
         </form>
+        <p id="successMessage">Message sent successfully!</p>
     </section>
 
     <footer>
@@ -159,40 +10,20 @@
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault();
+            
+            // Validate the form fields
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
 
-            const token = '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';  // Replace with your actual token
-            const repoOwner = 'capilano21';  // Replace with your GitHub username
-            const repoName = 'upai';  // Replace with your repository name
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            const issueTitle = `Contact form submission from ${name}`;
-            const issueBody = `**Name:** ${name}\n**Email:** ${email}\n\n**Message:**\n${message}`;
-
-            fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/issues`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    title: issueTitle,
-                    body: issueBody
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.html_url) {
-                    alert('Your message has been submitted as an issue!');
-                    console.log('Issue created: ' + data.html_url);
-                } else {
-                    alert('There was an error submitting your message.');
-                }
-            })
-            .catch(error => console.error('Error:', error));
+            if (name && email && message) {
+                // If all fields are valid, show success message
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('contactForm').reset();  // Optionally, reset the form
+            } else {
+                // If any field is invalid, alert the user (optional)
+                alert('Please fill out all fields.');
+            }
         });
     </script>
 </body>
