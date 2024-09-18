@@ -138,7 +138,7 @@
 
     <section>
         <h2>Get in Touch</h2>
-        <form action="submit_form.php" method="post">
+        <form id="contactForm">
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
@@ -156,5 +156,44 @@
         <p>&copy; 2024 UP.AI | All Rights Reserved</p>
     </footer>
 
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const token = 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN';  // Replace with your actual token
+            const repoOwner = 'YOUR_GITHUB_USERNAME';  // Replace with your GitHub username
+            const repoName = 'YOUR_REPOSITORY_NAME';  // Replace with your repository name
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const issueTitle = `Contact form submission from ${name}`;
+            const issueBody = `**Name:** ${name}\n**Email:** ${email}\n\n**Message:**\n${message}`;
+
+            fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/issues`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: issueTitle,
+                    body: issueBody
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.html_url) {
+                    alert('Your message has been submitted as an issue!');
+                    console.log('Issue created: ' + data.html_url);
+                } else {
+                    alert('There was an error submitting your message.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>
