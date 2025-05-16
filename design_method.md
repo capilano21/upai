@@ -234,9 +234,8 @@ Let us know if you'd like this as:
 * PDF whitepaper for submission
 * JSON export of policy episodes
 
+## Our custom Python code to interact with the Beckn PROTOCOL ##
 
-  ## latest_rewards_log should be in SCOPE ##
-BEARER_TOKEN = ""
 
   ```python
 def beckn_discount_pipeline():
