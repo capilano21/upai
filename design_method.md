@@ -241,3 +241,100 @@ Let us know if you'd like this as:
 
 
   ```
+  ```python
+## latest_rewards_log should be in SCOPE ##
+BEARER_TOKEN = ""
+
+def beckn_discount_pipeline():
+    import requests, json, copy
+
+    # ==== CONFIG ====  
+    bap_client_url = "http://bap-ps-client-deg-team6.becknprotocol.io"
+    bap_id   = "bap-ps-network-deg-team6.becknprotocol.io"
+    bap_uri  = "http://bap-ps-network-deg-team6.becknprotocol.io"
+    bpp_id   = "bpp-ps-network-deg-team6.becknprotocol.io"
+    bpp_uri  = "http://bpp-ps-network-deg-team6.becknprotocol.io"
+    bearer_token = BEARER_TOKEN  # define this globally or set it here directly
+
+    # ==== Fixed payload ====  
+    payload = {
+        "context": {
+            "domain": "deg:service",
+            "action": "search",
+            "location": {
+                "country": {
+                    "code": "USA"
+                }
+            },
+            "version": "1.1.0",
+            "bap_id": bap_id,
+            "bap_uri": bap_uri,
+            "bpp_id": bpp_id,
+            "bpp_uri": bpp_uri,
+            "transaction_id": "dc40e62d-d39c-4353-be59-60519c17df0c",
+            "message_id": "a99441aa-c972-43d5-8a73-cf55c41f0224",
+            "timestamp": "1747227185"  # Can change to ISO timestamp if needed
+        },
+        "message": {
+            "intent": {
+                "item": {
+                    "descriptor": {
+                        "name": "Connection"
+                    }
+                }
+            }
+        }
+    }
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {bearer_token}"
+    }
+
+    # ==== Send request ====  
+    url = f"{bap_client_url}/search"
+    res = requests.post(url, headers=headers, json=payload)
+    log = "**Original Payload(SEARCH)**   \n\n"
+    log += f"{res.json()}"
+
+    if res.status_code != 200:
+        return f"❌ /search failed: {res.status_code}\n{res.text}"
+
+    try:
+        on_search_catalog = res.json()["responses"][0]["message"]["catalog"]
+    except:
+        return "❌ Could not extract catalog from on_search response."
+
+    log += "📬 ORIGINAL CATALOG\n"
+    log += json.dumps(on_search_catalog, indent=2) + "\n\n"
+
+    # ==== Use rewards from RL ====  
+    try:
+        user_rewards = {r["User"]: r["Reward"] for r in latest_rewards_log}
+    except:
+        return "❌ No rewards found. Please run the simulation first."
+
+    # ==== Discount logic ====  
+    def reward_to_discount(r): return 0.2 if r >= 5 else 0.1 if r >= 2 else 0.0
+
+    def apply_discounts(catalog, reward):
+        discount = reward_to_discount(reward)
+        for provider in catalog.get("providers", []):
+            for item in provider.get("items", []):
+                base = float(item["price"]["value"])
+                item["price"]["discounted_value"] = round(base * (1 - discount), 2)
+                item["price"]["reward_based_discount_percent"] = int(discount * 100)
+        return catalog
+
+    # ==== Print catalogs per user ====  
+    for user, reward in user_rewards.items():
+        personalized = apply_discounts(copy.deepcopy(on_search_catalog), reward)
+        log += f"🎁 CATALOG for `{user}` — Reward: {reward}\n"
+        log += json.dumps(personalized, indent=2) + "\n\n"
+
+    return log
+
+# 🔁 Execute and print  
+print(beckn_discount_pipeline())
+```
+
