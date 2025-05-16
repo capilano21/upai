@@ -241,10 +241,10 @@ Let us know if you'd like this as:
 
 
   ```
-  ```python
-## latest_rewards_log should be in SCOPE ##
+  ## latest_rewards_log should be in SCOPE ##
 BEARER_TOKEN = ""
 
+  ```python
 def beckn_discount_pipeline():
     import requests, json, copy
 
@@ -333,8 +333,6 @@ def beckn_discount_pipeline():
         log += json.dumps(personalized, indent=2) + "\n\n"
 
     return log
-
+```
 # 🔁 Execute and print  
 print(beckn_discount_pipeline())
-```
-
